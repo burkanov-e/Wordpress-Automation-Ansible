@@ -14,7 +14,7 @@
 This program utilizes Ansible to install and configure servers for hosting WordPress. The program includes pre-defined playbooks and roles that automate the installation and configuration of necessary packages and settings.
 
 ### **Diagram**
-![](/diagram.png)
+![](/images/diagram.png)
 
 ### **Prerequisites**
 
