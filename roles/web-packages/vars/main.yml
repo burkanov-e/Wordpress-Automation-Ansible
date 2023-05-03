@@ -1,0 +1,22 @@
+---
+# vars file for web-packages
+apache:
+  - httpd
+  - httpd-tools
+
+epel_remi_utils: 
+  - 'https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm'
+  - 'https://rpms.remirepo.net/enterprise/remi-release-8.rpm'
+  - yum-utils
+
+php_xt_packages:
+  - php
+  - php-mysqlnd
+  - php-fpm
+  - php-xml
+  - php-opcache
+  - php-curl
+  - php-json
+  - php-gd
+  - php-mbstring
+  - php-zip

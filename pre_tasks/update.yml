@@ -1,0 +1,22 @@
+- name: Updating RPM
+  dnf: 
+    name: rpm
+    state: latest
+    update_cache: yes
+  when: ansible_pkg_mgr == 'dnf' and ansible_distribution == 'CentOS'
+
+- name: Updating all packages for CentOS
+  dnf: 
+    name: "*"
+    state: latest
+    update_cache: yes
+  when: ansible_pkg_mgr == 'dnf' and ansible_distribution == 'CentOS'
+
+- name: Upgrading all packages for Ubuntu
+  apt: 
+    upgrade: yes
+    update_cache: yes
+  when: ansible_pkg_mgr == 'apt' and ansible_distribution == 'Ubuntu'
+
+
+        

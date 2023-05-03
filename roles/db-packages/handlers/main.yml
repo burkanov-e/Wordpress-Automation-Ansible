@@ -1,0 +1,25 @@
+---
+# handlers file for db-packages
+
+- name: enable and start db
+  service:
+    name: mariadb.service
+    enabled: yes
+    state: started
+
+- name: enable and start firewall
+  systemd:
+    name: firewalld
+    state: started
+    enabled: yes
+
+- name: restart firewall 
+  systemd:
+    name: firewalld
+    state: restarted
+
+- name: restart mysql
+  service:
+    name: mysql
+    state: restarted
+    enabled: yes

@@ -1,0 +1,5 @@
+---
+# vars file for db-packages
+allowed_services_firewall:
+  - http
+  - https

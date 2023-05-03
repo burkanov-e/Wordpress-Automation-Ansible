@@ -1,0 +1,35 @@
+---
+# tasks file for web-packages
+- name: Ping Server
+  ping:
+
+
+- name: Install Apache and httpd-tools
+  dnf:
+    name: "{{ apache }}"
+    state: latest
+    update_cache: yes
+    
+
+- name: Install Epel-Release, Remi Release, yum-utils
+  dnf:
+    name: "{{ epel_remi_utils }}"
+    state: latest
+    update_cache: yes
+    disable_gpg_check: yes
+
+
+- name: Reset dnf php module
+  shell: "sudo dnf module reset php -y"
+
+      
+- name: dnf install remi8
+  shell: "sudo dnf module install php:remi-8.0 -y"
+
+
+- name: Install PHP and Dependencies
+  dnf:
+    name: "{{ php_xt_packages }}"
+    state: latest
+    update_cache: yes
+    disable_gpg_check: yes

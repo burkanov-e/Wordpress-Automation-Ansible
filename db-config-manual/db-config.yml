@@ -1,0 +1,27 @@
+---
+  - name: Configure DB 
+    hosts: database
+    gather_facts: yes
+    become: yes
+    vars_files: ../vars/main.yml
+
+    tasks:
+    - name: Create MySQL user for WordPress
+      mysql_user:
+        login_unix_socket: /var/run/mysqld/mysqld.sock
+        name: "{{ mysql_user }}"
+        password: "{{ mysql_usr_password }}"
+        priv: "{{ mysql_db }}.*:ALL"
+        host: "{{ mysql_usr_host }}"
+        state: present
+        login_user: root
+        login_password: "{{ mysql_root_password }}"
+
+    - name: Create database for WordPress
+      mysql_db:
+        login_unix_socket: /var/run/mysqld/mysqld.sock
+        name: "{{ mysql_db }}"
+        state: present
+        login_user: root
+        login_password: "{{ mysql_root_password }}"
+    

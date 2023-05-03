@@ -1,0 +1,32 @@
+---
+- hosts: all
+  gather_facts: true
+  become: true
+
+  pre_tasks:
+    - name: Ping servers
+      include_tasks: pre_tasks/ping.yml
+
+    - name: Update servers
+      include_tasks: pre_tasks/update.yml
+      
+  roles: 
+    - role: web-packages
+      when: ansible_pkg_mgr == "dnf"
+    
+    - role: web-configs
+      vars:
+        dir: 'vars/main.yaml'
+      when: ansible_pkg_mgr == "dnf"
+
+    - role: db-packages
+      when: ansible_pkg_mgr == "apt"
+
+  post_tasks:
+    - name: Restart httpd on a webserver
+      systemd:
+        name: httpd
+        state: restarted
+      when: ansible_facts['os_family']|lower == 'redhat'
+
+  

@@ -1,0 +1,51 @@
+---
+# tasks file for web-configs
+
+- name: Install WordPress
+  unarchive:
+    src: https://wordpress.org/latest.tar.gz
+    dest: /var/www/html
+    remote_src: yes
+    mode: '0775'
+    owner: apache
+    group: apache
+
+
+- name: get file stat 
+  stat: path=/var/www/html/wordpress
+  register: file
+
+
+- name: Move files from wordpress folder to /var/www/html
+  copy:
+    src: /var/www/html/wordpress/
+    dest: /var/www/html
+    remote_src: yes
+  register: mvfile
+  when: file.stat.exists
+  notify:
+    - restart apache
+
+
+- name: get file stat of wp-config.php
+  stat: path=/var/www/html/wp-config.php
+  register: wpconf
+
+
+- name: Set up wp-config
+  template:
+    src: wp-config.php.j2
+    dest: "/var/www/html/wp-config.php"
+  when: not wpconf.stat.exists
+  notify: 
+    - restart apache
+
+      
+- name: disable selinux
+  lineinfile:
+    path: /etc/selinux/config
+    search_string: 'SELINUX=enforcing'
+    line: SELINUX=disabled
+  when: (ansible_selinux.status == "enabled") or (ansible_selinux.status == "enforcing")
+  notify:
+    - reboot system

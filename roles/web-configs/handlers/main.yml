@@ -1,0 +1,10 @@
+---
+# handlers file for web-configs
+- name: restart apache
+  systemd:
+    name: httpd
+    state: restarted
+
+- name: reboot system 
+  reboot:
+    reboot_timeout: 360

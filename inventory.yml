@@ -1,0 +1,13 @@
+---
+all:
+  hosts:
+  children:
+    frontend:
+      hosts:
+        webserver:
+          ansible_host: 10.108.0.4 
+    
+    backend:
+      hosts:
+        database:
+          ansible_host: 10.108.0.5

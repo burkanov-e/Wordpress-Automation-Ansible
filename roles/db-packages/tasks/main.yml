@@ -1,0 +1,49 @@
+---
+# tasks file for db-packages
+
+- name: Install DB
+  apt:
+    name: 
+      - mariadb-server
+      - python3-pymysql
+    state: present
+  notify:
+    - enable and start db
+
+
+- name: Install firewalld
+  apt:
+    name: firewalld
+    state: present
+  notify:
+    - enable and start firewall
+
+
+- name: Allow incoming HTTP and HTTPS traffic
+  firewalld:
+    service: "{{ item }}"
+    zone: public
+    permanent: yes
+    state: enabled
+  with_items: "{{ allowed_services_firewall }}"
+  notify: 
+    - restart firewall 
+
+
+- name: Allow incoming traffic on port 3306 
+  firewalld:
+    port: 3306/tcp
+    zone: public
+    permanent: yes
+    state: enabled
+  notify:
+    - restart firewall 
+
+
+- name: Configure mysqld.cfg file
+  lineinfile:
+    path: /etc/mysql/mariadb.conf.d/50-server.cnf
+    regexp: '^bind-address'
+    line: bind-address = 10.108.0.5
+  notify:
+    - restart mysql

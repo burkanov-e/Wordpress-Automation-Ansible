@@ -1,0 +1,7 @@
+mysql_usr_host: "<your_webserver_host>"
+mysql_db_host: "<your_db_host>"
+
+mysql_root_password: "<your_db_root_password>"
+mysql_db: "<your_db_name>" 
+mysql_user: "<your_db_username>"
+mysql_usr_password: "<user_db_password>"
