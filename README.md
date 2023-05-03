@@ -1,7 +1,5 @@
 ## **Wordpress Automation with Ansible**
 
-<br>
-
 ### **Table of Content**
 
 - [Program Description](#program-description)
@@ -11,18 +9,12 @@
 - [Code Map](#code-mapping)
 - [Useful Links](#useful-links)
 
-<br>
-
 ### **Program Description**
 
 This program utilizes Ansible to install and configure servers for hosting WordPress. The program includes pre-defined playbooks and roles that automate the installation and configuration of necessary packages and settings.
 
-<br>
-
 ### **Diagram**
 ![](/diagram.png)
-
-<br>
 
 ### **Prerequisites**
 
@@ -36,7 +28,6 @@ Before running the program, ensure that:
     - **target server 1** and **target server 2** have the same username as **the** **local machine** username
     - **target server 1** and **target server 2** have the same sudo password
 
-<br>
 
 ### **How to Run the Code**
 
@@ -60,8 +51,7 @@ Before running the program, ensure that:
 6. Run the `db-config-manual/db-config.yml`
     - Change your directory to `db-config-manual`
     - Run this command `ansible-playbook -i ../inventory.yml db-config.yml -K --ask-vault-pass`
-
-<br>
+ 
 
 ### **Code Mapping**
 
@@ -83,7 +73,6 @@ wordpress
 
 ```
 
-<br>
 
 ### **Useful Links**
 
