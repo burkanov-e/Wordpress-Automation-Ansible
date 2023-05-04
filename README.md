@@ -21,20 +21,12 @@ This program utilizes Ansible to install and configure servers for hosting WordP
 Before running the program, ensure that:
 
 - Ansible is installed on the local machine
-    - To check if it’s installed, run 
-        <div style="overflow-x: auto; white-space: nowrap;">
-            <code>
-            ansible --version
-            </code>
-        </div>
+    - To check if it’s installed, run   
+            ```ansible --version```
     
 - The target servers have SSH access
-    - To check, run this command
-        <div style="overflow-x: auto; white-space: nowrap;">
-            <code>
-            ansible (target server IP) -m ping
-            </code>
-        </div>
+    - To check, run this command  
+            ```ansible (target server IP) -m ping```
 - The target servers have privileged users with the same username and sudo password
     - **target server 1** and **target server 2** have the same username as **the** **local machine** username
     - **target server 1** and **target server 2** have the same sudo password
@@ -45,12 +37,8 @@ Before running the program, ensure that:
 1. Clone the repository to the local machine
    - navigate to the directory where you want to clone
    - make sure that you have git installed
-   - run this command
-        <div style="overflow-x: auto; white-space: nowrap;">
-            <code>
-            git clone https://github.com/burkanov-e/Wordpress-Automation-Ansible.git
-            </code>
-        </div>
+   - run this command  
+           ```git clone https://github.com/burkanov-e/Wordpress-Automation-Ansible.git```
     
 2. The inventory file should be properly configured with the target server information / IP Addresses
     - open wordpress/inventory.yml
@@ -63,47 +51,26 @@ Before running the program, ensure that:
     ![](images/vars.png)
         
     
-    **Note:** This file contains sensitive information, please protect it with `ansible-vault` . In order to protect it, run 
-        <div style="overflow-x: auto; white-space: nowrap;">
-            <code>
-            ansible-vault encrypt <path/to/vars/main.yml>
-            </code>
-        </div>
+    **Note:** This file contains sensitive information, please protect it with `ansible-vault` . In order to protect it, run  
+    ```ansible-vault encrypt <path/to/vars/main.yml>```
     
 4. Run the main.yml playbook 
-    - **If wordpress/vars/main.yml is encrypted:**
-        <div style="overflow-x: auto; white-space: nowrap;">
-            <code>
-            ansible-playbook -i inventory.yml main.yml -K 
-        --ask-vault-pass
-            </code>
-        </div>
+    - **If wordpress/vars/main.yml is encrypted:**     
+```ansible-playbook -i inventory.yml main.yml -K --ask-vault-pass```
 
-    - **If not:**
-        <div style="overflow-x: auto; white-space: nowrap;">
-            <code>
-            ansible-playbook -i inventory.yml main.yml -K
-            </code>
-        </div>
+    - **If not:**   
+```ansible-playbook -i inventory.yml main.yml -K```
 
-5. Connect to the database server and run this command 
-        <div style="overflow-x: auto; white-space: nowrap;">
-            <code>
-            mysql_secure_installation
-            </code>
-        </div>
+1. Connect to the database server and run this command   
+            ```mysql_secure_installation```
 
     
     **Note:** Please provide root password that you provided in `wordpress/vars/main.yml`, otherwise the next step is going to fail. 
     
-6. Run the `db-config-manual/db-config.yml`
+2. Run the `db-config-manual/db-config.yml`
     - Change your directory to `db-config-manual`
-    - Run this command 
-        <div style="overflow-x: auto; white-space: nowrap;">
-            <code>
-            ansible-playbook -i ../inventory.yml db-config.yml -K --ask-vault-pass
-            </code>
-        </div>
+    - Run this command   
+    ```ansible-playbook -i ../inventory.yml db-config.yml -K --ask-vault-pass```
  
 
 ### **Code Mapping**
