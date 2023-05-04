@@ -5,9 +5,9 @@ all:
     frontend:
       hosts:
         webserver:
-          ansible_host: 10.108.0.4 
+          ansible_host: <your webserver ip address>
     
     backend:
       hosts:
         database:
-          ansible_host: 10.108.0.5
+          ansible_host: <your database ip address>
