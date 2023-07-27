@@ -2,13 +2,12 @@
 
 ### **Table of Content**
 
-- [**Wordpress Automation with Ansible**](#wordpress-automation-with-ansible)
-  - [**Table of Content**](#table-of-content)
-  - [**Program Description**](#program-description)
-  - [**Prerequisites**](#prerequisites)
-  - [**How to Run the Code**](#how-to-run-the-code)
-  - [**Code Mapping**](#code-mapping)
-  - [**Useful Links**](#useful-links)
+- [Wordpress Automation with Ansible](#wordpress-automation-with-ansible)
+  - [Program Description](#program-description)
+  - [Prerequisites](#prerequisites)
+  - [How to Run the Code](#how-to-run-the-code)
+  - [Code Mapping](#code-mapping)
+  - [Useful Links](#useful-links)
 
 ### **Program Description**
 
